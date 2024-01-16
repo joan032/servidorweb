@@ -33,6 +33,8 @@ a2ensite www.projecteinfovj.com.conf
 sudo cp portada.html /var/www/projecteinfovj.com/html
 sudo cp error.html /var/www/projecteinfovj.com/html
 
+a2ensite www.projecteinfovj.com.conf
+a2dissite 000_default.conf
 
 # Restart the DHCP server
 sudo systemctl restart apache2

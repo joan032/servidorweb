@@ -1,29 +1,38 @@
 #!/bin/bash
+# Purpose: Configure Ubuntu DHCP server
+# https://ubuntu.com/server/docs/network-dhcp
+# Author: Jose Maria Madronal GPL v2.0+ (Proxmox script)
+# ------------------------------------------
 
-# Variables
-GITHUB_REPO="https://github.com/joan032/servidorweb.git"
-ARCHIVE_NAME="backup_projecteinfovj.com20240116_152247.tar.gz"
-WEB_CONFIG_FILE="www.projecteinfovj.com.conf"
-WEB_ROOT="/var/www"
-# SERVER_CONFIG_DIR="/etc/apache2/sites-available"
+# declare STRING variable
+STRING="Script example"
+f_web_conf="https://raw.githubusercontent.com/joan032/DNS/master/named.conf.local"
+f_portada="https://raw.githubusercontent.com/joan032/servidorweb/main/portada.html"
+f_error="https://raw.githubusercontent.com/joan032/servidorweb/main/error.html"
 
-# Instalar y configurar el servidor web (puedes necesitar ajustar esto según tu servidor web)
-# Por ejemplo, si estás utilizando Apache
-sudo apt-get install apache2
+#crear arbre de directoris
+cd /var/www
+mkdir projecteinfovj.com
+cd projecteinfovj.com
+mkdir html
+mkdir logs
+cd logs
+
+# Install DHCP
+sudo apt install apache2
+
+# Download GitHub configuration file
+wget $f_web_conf
+wget $f_portada
+wget $f_error
+
+
+# Copy the configuration file to /etc/dhcp directory
+sudo cp www.projecteinfovj.com.conf /etc/apache2/sites-available
+a2ensite www.projecteinfovj.com.conf
+sudo cp portada.html /var/www/projecteinfovj.com/html
+sudo cp error.html /var/www/projecteinfovj.com/html
+
+
+# Restart the DHCP server
 sudo systemctl restart apache2
-
-# Descargar el archivo tar.gz desde GitHub
-wget "$GITHUB_REPO/archive/$ARCHIVE_NAME"
-
-# Descomprimir el archivo tar.gz
-tar -zxvf "$ARCHIVE_NAME" -C /tmp/
-
-# Mover archivos a la ubicación del servidor web
-mv "$ARCHIVE_NAME/" "$WEB_ROOT"
-
-# Copiar el archivo de configuración del servidor web
-cp "$WEB_CONFIG_FILE" "/etc/apache2/sites-available"
-a2ensite "$WEB_CONFIG_FILE"
-a2dissite "000-default.conf"
-
-echo "Instalación completada."

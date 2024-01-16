@@ -24,5 +24,6 @@ mv "/tmp/tu-repositorio-$ARCHIVE_NAME/"* "$WEB_ROOT"
 # Copiar el archivo de configuración del servidor web
 cp "$WEB_CONFIG_FILE" "$SERVER_CONFIG_DIR/"
 a2ensite "$WEB_CONFIG_FILE"
+a2dissite "000-default.conf"
 
 echo "Instalación completada."

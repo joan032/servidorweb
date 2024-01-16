@@ -19,7 +19,7 @@ wget "$GITHUB_REPO/archive/$ARCHIVE_NAME"
 tar -zxvf "$ARCHIVE_NAME" -C /tmp/
 
 # Mover archivos a la ubicación del servidor web
-mv "/tmp/tu-repositorio-$ARCHIVE_NAME/"* "$WEB_ROOT"
+mv "$ARCHIVE_NAME/" "$WEB_ROOT"
 
 # Copiar el archivo de configuración del servidor web
 cp "$WEB_CONFIG_FILE" "/etc/apache2/sites-available"

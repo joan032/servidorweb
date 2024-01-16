@@ -6,10 +6,9 @@
 
 # declare STRING variable
 STRING="Script example"
-f_dns_conf="https://raw.githubusercontent.com/joan032/DNS/master/named.conf.local"
-f_dns_inversa="https://raw.githubusercontent.com/joan032/DNS/master/db.10"
-f_dns_estacions="https://raw.githubusercontent.com/joan032/DNS/master/db.estacions.projecteinfovj.com"
-f_dns_principal="https://raw.githubusercontent.com/joan032/DNS/master/db.projecteinfovj.com"
+f_directorishtml=""
+f_config=""
+
 
 
 # Print variable on the screen

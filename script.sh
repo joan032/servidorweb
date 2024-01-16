@@ -5,7 +5,7 @@ GITHUB_REPO="https://github.com/joan032/servidorweb.git"
 ARCHIVE_NAME="backup_projecteinfovj.com20240116_152247.tar.gz"
 WEB_CONFIG_FILE="www.projecteinfovj.com.conf"
 WEB_ROOT="/var/www"
-SERVER_CONFIG_DIR="/etc/apache2"
+SERVER_CONFIG_DIR="/etc/apache2/sites-available"
 
 # Instalar y configurar el servidor web (puedes necesitar ajustar esto según tu servidor web)
 # Por ejemplo, si estás utilizando Apache
@@ -23,5 +23,6 @@ mv "/tmp/tu-repositorio-$ARCHIVE_NAME/"* "$WEB_ROOT"
 
 # Copiar el archivo de configuración del servidor web
 cp "$WEB_CONFIG_FILE" "$SERVER_CONFIG_DIR/"
+a2ensite "$WEB_CONFIG_FILE"
 
 echo "Instalación completada."

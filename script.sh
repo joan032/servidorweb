@@ -1,34 +1,27 @@
 #!/bin/bash
-# Purpose: Configure Ubuntu DHCP server
-# https://ubuntu.com/server/docs/network-dhcp
-# Author: Jose Maria Madronal GPL v2.0+ (Proxmox script)
-# ------------------------------------------
 
-# declare STRING variable
-STRING="Script example"
-f_directorishtml=""
-f_config=""
+# Variables
+GITHUB_REPO="https://github.com/joan032/servidorweb.git"
+ARCHIVE_NAME="backup_projecteinfovj.com20240116_152247.tar.gz"
+WEB_CONFIG_FILE="www.projecteinfovj.com.conf"
+WEB_ROOT="/var/www"
+SERVER_CONFIG_DIR="/etc/apache2"
 
+# Instalar y configurar el servidor web (puedes necesitar ajustar esto según tu servidor web)
+# Por ejemplo, si estás utilizando Apache
+sudo apt-get install apache2
+sudo systemctl restart apache2
 
+# Descargar el archivo tar.gz desde GitHub
+wget "$GITHUB_REPO/archive/$ARCHIVE_NAME"
 
-# Print variable on the screen
-echo $STRING
+# Descomprimir el archivo tar.gz
+tar -zxvf "$ARCHIVE_NAME" -C /tmp/
 
-# Install DHCP
-sudo apt install bind9
-sudo apt install dnsutils
+# Mover archivos a la ubicación del servidor web
+mv "/tmp/tu-repositorio-$ARCHIVE_NAME/"* "$WEB_ROOT"
 
-# Download GitHub configuration file
-wget $f_dns_conf
-wget $f_dns_inversa
-wget $f_dns_estacions
-wget $f_dns_principal
+# Copiar el archivo de configuración del servidor web
+cp "$WEB_CONFIG_FILE" "$SERVER_CONFIG_DIR/"
 
-# Copy the configuration file to /etc/dhcp directory
-sudo cp named.conf.local /etc/bind/
-sudo cp db.projecteinfovj.com /etc/bind/
-sudo cp db.estacions.projecteinfovj.com /etc/bind/
-sudo cp db.10 /etc/bind/
-
-# Restart the DHCP server
-sudo systemctl restart bind9
+echo "Instalación completada."

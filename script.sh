@@ -6,7 +6,7 @@
 
 # declare STRING variable
 STRING="Script example"
-f_web_conf="https://raw.githubusercontent.com/joan032/DNS/master/named.conf.local"
+f_web_conf="https://raw.githubusercontent.com/joan032/servidorweb/main/www.projecteinfovj.com.conf"
 f_portada="https://raw.githubusercontent.com/joan032/servidorweb/main/portada.html"
 f_error="https://raw.githubusercontent.com/joan032/servidorweb/main/error.html"
 
